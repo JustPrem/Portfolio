@@ -7,13 +7,9 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "postbuild": "echo 'code-prem.dev' > dist/CNAME",
-    "deploy": "gh-pages -d dist -r https://github.com/JustPrem/Portfolio.git"
+    "postbuild": "echo 'code-prem.dev' > dist/CNAME"
   },
   "dependencies": {
     "astro": "^5.10.0"
-  },
-  "devDependencies": {
-    "gh-pages": "^6.3.0"
   }
 }
