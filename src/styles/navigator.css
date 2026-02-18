@@ -1,0 +1,52 @@
+@import "./global.css";
+
+/* Base link styles */
+a {
+	color: #a0a0a0;
+	text-decoration: none;
+	transition: color 0.2s ease;
+
+	/* Accessibility */
+	min-height: 44px; /* Apple HIG */
+  	display: inline-flex;
+  	align-items: center;
+
+	/* Remove highlight on mobile */
+	-webkit-tap-highlight-color: transparent;
+}
+
+/* Visited links */
+a:visited {
+	color: #b0b0b0;
+}
+
+/* Hover & focus */
+a:hover,
+a:focus {
+	color: #d0d0d0;
+}
+
+/* Current page link */
+a[aria-current="page"] {
+	text-decoration: underline;
+}
+
+/* Base (mobile) */
+.nav a {
+  font-size: 1.2rem;
+  padding: 0.5rem 0.25rem; /* bigger tap area */
+  
+}
+
+/* Tablet and up */
+@media (min-width: 720px) {
+  	.nav a {
+		font-size: 1rem;
+    	padding: 0.25rem 0;
+  	}
+}
+
+.nav {
+	display: flex;
+	gap: 0.75rem;
+}

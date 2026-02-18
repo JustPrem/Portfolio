@@ -1,0 +1,61 @@
+/* Fonts */
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter-VariableFont_opsz,wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Base */
+html {
+	font-size: 16px;
+}
+
+@media (min-width: 720px) {
+	html {
+		font-size: 18px;
+	}
+}
+
+h1 {
+	font-size: 5.61rem;
+}
+
+h2 {
+	font-size: 4.209rem;
+}
+
+h3 {
+	font-size: 3.157rem;
+}
+
+h4 {
+	font-size: 2.369rem;
+}
+
+h5 {
+	font-size: 1.777rem;
+}
+
+h6 {
+	font-size: 1.333rem;
+}
+
+p {
+	font-size: 1rem;
+}
+
+small {
+	font-size: 0.75rem;
+}
+
+/* Smaller Margins */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 2vh 0;
+}

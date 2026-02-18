@@ -1,18 +1,35 @@
 ---
----
+// Imports
+import Layout from '../layouts/base.astro';
+import Hero from '../components/hero.astro';
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/floppy-disk.png" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Przemek Kaniewski</title>
-	</head>
-	<body>
-		<!-- Navigation -->
-	
-		<!-- Contents -->
-		<h1>Site under construction!</h2>
-	</body>
-</html>
+// Icons.
+import GithubSVG from "../svg/github.astro";
+import LinkedInSVG from "../svg/linkedin.astro";
+
+import { getCollection } from "astro:content";
+
+// Fetch Projects.
+const projects = await getCollection("projects");
+
+	// Sort Projects.
+projects.sort((a, b) => new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf());
+
+
+---
+<Layout title="Portfolio - Przemek" currentPage="Home">
+
+	<!-- Header -->
+	<section>
+		<h4>Hey, I'm Przemek 👋</h4>
+		<h6>I'm a Software Developer based in the United Kingdom</h6>
+		<p>Passionate about Android Development, Mixed Reality and Self-hosting.</p>
+	</section>
+
+	<a href="https://www.linkedin.com/in/przemek-kaniewski/" target="_blank" rel="noopener noreferrer">
+		<LinkedInSVG/>
+	</a>
+	<a href="https://github.com/JustPrem" target="_blank" rel="noopener noreferrer">
+		<GithubSVG/>
+	</a>
+</Layout>

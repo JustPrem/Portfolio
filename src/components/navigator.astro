@@ -1,0 +1,19 @@
+---
+// Page name passed in from the layout/page
+const { currentPage } = Astro.props;
+
+// Central navigation definition
+const pages = [
+	//{ name: "Home", href: "/" },
+  //{ name: "Projects", href: "/projects" },
+  //{ name: "About", href: "/about" },
+  //{ name: "Blog", href: "/blog" },
+];
+---
+<section class="nav">
+  {pages.map((page) => (
+    <a href={page.href}aria-current={page.name === currentPage ? "page" : undefined}>
+      {page.name}
+    </a>
+  ))}
+</section>
