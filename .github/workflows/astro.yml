@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
   workflow_dispatch:
 
 permissions:
@@ -22,15 +22,6 @@ jobs:
       - name: Install, build, and upload your site
         id: build-site
         uses: withastro/action@v5
-        with:
-          # optional, Astro root directory (default is repo root)
-          # path: .
-          # Node version
-          # node-version: 24
-          # package manager (detected automatically)
-          # package-manager: pnpm@latest
-          # Build command
-          # build-cmd: pnpm run build
 
   deploy:
     needs: build
