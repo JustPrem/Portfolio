@@ -10,6 +10,7 @@
     "postbuild": "echo 'code-prem.dev' > dist/CNAME"
   },
   "dependencies": {
-    "astro": "^5.10.0"
+    "astro": "^5.10.0",
+    "marked": "^17.0.3"
   }
 }

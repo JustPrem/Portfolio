@@ -1,0 +1,16 @@
+---
+
+// Load collection library. (To view md files)
+import { getCollection } from "astro:content";
+import Project from "./project.astro";
+
+const projects = await getCollection("projects");
+
+---
+
+{projects.map((project) => (
+	<Project 
+		frontmatter={project.data}
+		content={project.body}
+	/>
+))}

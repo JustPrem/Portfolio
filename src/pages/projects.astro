@@ -1,0 +1,26 @@
+---
+
+// Imports
+import { getCollection } from "astro:content";
+
+// Components.
+import Layout from '../layouts/base.astro';
+import Hero from '../components/hero.astro';
+import ProjectList from '../components/project-list.astro';
+
+// Icons.
+import GithubSVG from "../svg/github.astro";
+import LinkedInSVG from "../svg/linkedin.astro";
+
+---
+<Layout title="Portfolio - Przemek" currentPage="Projects">
+
+	<!-- Header -->
+	<section>
+		<h4>My Projects 🖥️</h4>
+		<p>Here you can find all of my main software projects, feel free to browse.</p>
+	</section>
+
+	<!-- Project View -->
+	<ProjectList/>
+</Layout>

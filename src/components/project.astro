@@ -1,0 +1,33 @@
+---
+// Styles.
+import "../styles/project.css";
+
+// Components.
+import GithubSVG from "../svg/github.astro";
+
+// Data.
+const { frontmatter, content } = Astro.props;
+const { title, tech, github, projectDate } = frontmatter;
+
+---
+<div class="project">
+	
+	<!-- Header -->
+	<h5>{title}</h5>
+	<p class="project-date"><b>Date:</b> {projectDate.toLocaleDateString("en-GB")}</p>
+	<p class="project-tech"><b>Tech:</b> {
+		tech.map((item, index) => (
+			<>
+				<em>{item}</em>
+				{index < tech.length - 1 && ", "}
+			</>
+		))}
+	</p>
+
+	<!-- Content -->
+	<div class="project-desc" set:html={content}></div>
+	
+	<!-- Links -->
+	<a class="link" href={github}><GithubSVG/><p>Github</p></a>
+
+</div>

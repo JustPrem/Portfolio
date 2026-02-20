@@ -1,20 +1,16 @@
 ---
+
 // Imports
+import { getCollection } from "astro:content";
+
+// Components.
 import Layout from '../layouts/base.astro';
 import Hero from '../components/hero.astro';
+//import FeaturedProjects from '../components/featured-projects.astro';
 
 // Icons.
 import GithubSVG from "../svg/github.astro";
 import LinkedInSVG from "../svg/linkedin.astro";
-
-import { getCollection } from "astro:content";
-
-// Fetch Projects.
-const projects = await getCollection("projects");
-
-	// Sort Projects.
-projects.sort((a, b) => new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf());
-
 
 ---
 <Layout title="Portfolio - Przemek" currentPage="Home">
@@ -23,13 +19,16 @@ projects.sort((a, b) => new Date(b.data.date).valueOf() - new Date(a.data.date).
 	<section>
 		<h4>Hey, I'm Przemek 👋</h4>
 		<h6>I'm a Software Developer based in the United Kingdom</h6>
-		<p>Passionate about Android Development, Mixed Reality and Self-hosting.</p>
+		<p>My main focus is Android Development, Mixed Reality and Self-hosting.</p>
 	</section>
 
+	<!-- Links -->
 	<a href="https://www.linkedin.com/in/przemek-kaniewski/" target="_blank" rel="noopener noreferrer">
 		<LinkedInSVG/>
 	</a>
 	<a href="https://github.com/JustPrem" target="_blank" rel="noopener noreferrer">
 		<GithubSVG/>
 	</a>
+
+	<!-- Project View -->
 </Layout>
