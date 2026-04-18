@@ -4,19 +4,78 @@ import { marked } from 'marked';
 import { getCollection } from "astro:content";
 import Project from "./project.astro";
 
-const projects = (await getCollection("projects"))
+const allFeatured = (await getCollection("projects"))
 	.filter((p) => p.data.featured)
 	.sort((a, b) => b.data.projectDate - a.data.projectDate);
+
+const softwareProjects = allFeatured.filter((p) => p.data.type === "software");
+const uxProjects = allFeatured.filter((p) => p.data.type === "ux");
 ---
 
-{projects.length > 0 && (
+{allFeatured.length > 0 && (
 	<section class="history">
 		<h6>Featured Projects</h6>
-		{projects.map((project) => (
-			<Project
-				frontmatter={project.data}
-				content={marked.parse(project.body)}
-			/>
-		))}
+		<div class="history-toggle">
+			<button class="toggle-btn active" data-target="featured-software">Software</button>
+			<button class="toggle-btn" data-target="featured-ux">UX</button>
+		</div>
+
+		<div class="panel-container">
+			<div class="history-panel open" id="panel-featured-software">
+				{softwareProjects.map((project) => (
+					<Project
+						frontmatter={project.data}
+						content={marked.parse(project.body)}
+					/>
+				))}
+			</div>
+			<div class="history-panel" id="panel-featured-ux">
+				{uxProjects.map((project) => (
+					<Project
+						frontmatter={project.data}
+						content={marked.parse(project.body)}
+					/>
+				))}
+			</div>
+		</div>
 	</section>
 )}
+
+<script>
+	document.querySelectorAll<HTMLElement>(".history").forEach((section) =>
+	{
+		const buttons = section.querySelectorAll<HTMLButtonElement>(".toggle-btn");
+		const container = section.querySelector<HTMLElement>(".panel-container");
+		const panels = section.querySelectorAll<HTMLElement>(".history-panel");
+
+		if (!container) return;
+
+		const initialOpen = section.querySelector<HTMLElement>(".history-panel.open");
+		if (initialOpen)
+		{
+			container.style.height = initialOpen.scrollHeight + "px";
+		}
+
+		buttons.forEach((btn) =>
+		{
+			btn.addEventListener("click", () =>
+			{
+				const target = btn.dataset.target;
+
+				buttons.forEach((b) => b.classList.remove("active"));
+				btn.classList.add("active");
+
+				panels.forEach((panel) =>
+				{
+					const isTarget = panel.id.endsWith(target!);
+					panel.classList.toggle("open", isTarget);
+
+					if (isTarget)
+					{
+						container.style.height = panel.scrollHeight + "px";
+					}
+				});
+			});
+		});
+	});
+</script>

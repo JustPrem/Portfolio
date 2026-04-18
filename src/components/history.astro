@@ -22,81 +22,100 @@ function formatPeriod(start: Date, end?: Date)
 ---
 
 <section class="history">
-
 	<!-- Segmented Button -->
 	<div class="history-toggle">
 		<button class="toggle-btn active" data-target="work">Work History</button>
 		<button class="toggle-btn" data-target="education">Education</button>
 	</div>
 
-	<!-- Work History -->
-	<div class="history-panel" id="panel-work">
-		<div class="timeline">
-			{workEntries.map((entry) =>
-			{
-				const { jobTitle, company, startDate, endDate } = entry.data;
-				return (
-					<div class="timeline-item">
-						<div class="timeline-marker"></div>
-						<div class="timeline-content">
-							<div class="timeline-header">
-								<div>
-									<p class="timeline-title">{jobTitle}</p>
-									<p class="timeline-sub">{company}</p>
+	<div class="panel-container">
+		<!-- Work History -->
+		<div class="history-panel open" id="panel-work">
+			<div class="timeline">
+				{workEntries.map((entry) =>
+				{
+					const { jobTitle, company, startDate, endDate } = entry.data;
+					return (
+						<div class="timeline-item">
+							<div class="timeline-marker"></div>
+							<div class="timeline-content">
+								<div class="timeline-header">
+									<div>
+										<p class="timeline-title">{jobTitle}</p>
+										<p class="timeline-sub">{company}</p>
+									</div>
+									<span class="timeline-period">{formatPeriod(startDate, endDate)}</span>
 								</div>
-								<span class="timeline-period">{formatPeriod(startDate, endDate)}</span>
+								<div class="timeline-desc" set:html={marked.parse(entry.body)}></div>
 							</div>
-							<div class="timeline-desc" set:html={marked.parse(entry.body)}></div>
 						</div>
-					</div>
-				);
-			})}
+					);
+				})}
+			</div>
+		</div>
+
+		<!-- Education -->
+		<div class="history-panel" id="panel-education">
+			<div class="timeline">
+				{educationEntries.map((entry) =>
+				{
+					const { degree, institution, startDate, endDate } = entry.data;
+					return (
+						<div class="timeline-item">
+							<div class="timeline-marker"></div>
+							<div class="timeline-content">
+								<div class="timeline-header">
+									<div>
+										<p class="timeline-title">{degree}</p>
+										<p class="timeline-sub">{institution}</p>
+									</div>
+									<span class="timeline-period">{formatPeriod(startDate, endDate)}</span>
+								</div>
+								<div class="timeline-desc" set:html={marked.parse(entry.body)}></div>
+							</div>
+						</div>
+					);
+				})}
+			</div>
 		</div>
 	</div>
-
-	<!-- Education -->
-	<div class="history-panel hidden" id="panel-education">
-		<div class="timeline">
-			{educationEntries.map((entry) =>
-			{
-				const { degree, institution, startDate, endDate } = entry.data;
-				return (
-					<div class="timeline-item">
-						<div class="timeline-marker"></div>
-						<div class="timeline-content">
-							<div class="timeline-header">
-								<div>
-									<p class="timeline-title">{degree}</p>
-									<p class="timeline-sub">{institution}</p>
-								</div>
-								<span class="timeline-period">{formatPeriod(startDate, endDate)}</span>
-							</div>
-							<div class="timeline-desc" set:html={marked.parse(entry.body)}></div>
-						</div>
-					</div>
-				);
-			})}
-		</div>
-	</div>
-
 </section>
 
 <script>
-	const buttons = document.querySelectorAll<HTMLButtonElement>(".toggle-btn");
-	const panels = document.querySelectorAll<HTMLElement>(".history-panel");
-
-	buttons.forEach((btn) =>
+	document.querySelectorAll<HTMLElement>(".history").forEach((section) =>
 	{
-		btn.addEventListener("click", () =>
+		const buttons = section.querySelectorAll<HTMLButtonElement>(".toggle-btn");
+		const container = section.querySelector<HTMLElement>(".panel-container");
+		const panels = section.querySelectorAll<HTMLElement>(".history-panel");
+
+		if (!container) return;
+
+		// Set initial container height to the open panel.
+		const initialOpen = section.querySelector<HTMLElement>(".history-panel.open");
+		if (initialOpen)
 		{
-			const target = btn.dataset.target;
+			container.style.height = initialOpen.scrollHeight + "px";
+		}
 
-			buttons.forEach((b) => b.classList.remove("active"));
-			btn.classList.add("active");
-
-			panels.forEach((panel) =>
+		buttons.forEach((btn) =>
+		{
+			btn.addEventListener("click", () =>
 			{
-				panel.classList.toggle("hidden", !panel.id.endsWith(target!));
+				const target = btn.dataset.target;
+
+				buttons.forEach((b) => b.classList.remove("active"));
+				btn.classList.add("active");
+
+				panels.forEach((panel) =>
+				{
+					const isTarget = panel.id.endsWith(target!);
+					panel.classList.toggle("open", isTarget);
+
+					if (isTarget)
+					{
+						container.style.height = panel.scrollHeight + "px";
+					}
+				});
 			});
 		});
 	});

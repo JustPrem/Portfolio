@@ -9,6 +9,27 @@
 		0 8px 24px rgba(0, 0, 0, 0.15);
 }
 
+.panel-container {
+	position: relative;
+	transition: height 0.3s ease;
+	overflow: hidden;
+}
+
+.history-panel {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	opacity: 0;
+	transition: opacity 0.3s ease;
+	pointer-events: none;
+}
+
+.history-panel.open {
+	opacity: 1;
+	pointer-events: auto;
+}
+
 /* Segmented Button */
 .history-toggle {
 	display: flex;

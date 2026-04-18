@@ -7,6 +7,7 @@ const projects = defineCollection({
 		github: z.string().url().optional(),
 		projectDate: z.date(),
 		featured: z.boolean().optional().default(false),
+		type: z.enum(["software", "ux"]).default("software"),
 	}),
 });
 
