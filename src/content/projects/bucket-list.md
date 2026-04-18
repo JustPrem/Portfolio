@@ -3,6 +3,7 @@ title: "Bucket List"
 tech: ["Flutter"]
 github: "https://github.com/JustPrem/bucket_list"
 projectDate: 2025-08-27
+featured: false
 ---
 A minimal "to-do" style application, created to practice using a state-management library "riverpod" for Flutter.
 

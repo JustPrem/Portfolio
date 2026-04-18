@@ -1,16 +1,22 @@
 ---
-
-// Load collection library. (To view md files)
+// Imports.
+import { marked } from 'marked';
 import { getCollection } from "astro:content";
 import Project from "./project.astro";
 
-const projects = await getCollection("projects");
-
+const projects = (await getCollection("projects"))
+	.filter((p) => p.data.featured)
+	.sort((a, b) => b.data.projectDate - a.data.projectDate);
 ---
 
-{projects.map((project) => (
-	<Project 
-		frontmatter={project.data}
-		content={project.body}
-	/>
-))}
+{projects.length > 0 && (
+	<section class="history">
+		<h6>Featured Projects</h6>
+		{projects.map((project) => (
+			<Project
+				frontmatter={project.data}
+				content={marked.parse(project.body)}
+			/>
+		))}
+	</section>
+)}

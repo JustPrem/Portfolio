@@ -1,0 +1,125 @@
+/* History Section */
+.history {
+	border: 1px solid rgba(255, 255, 255, 0.25);
+	border-radius: 14px;
+	margin: 1rem 0;
+	padding: 1.25rem 1.5rem;
+	box-shadow:
+		0 0 0 1px rgba(255, 255, 255, 0.05),
+		0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Segmented Button */
+.history-toggle {
+	display: flex;
+	background: rgba(255, 255, 255, 0.05);
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	border-radius: 8px;
+	padding: 3px;
+	gap: 3px;
+	margin-bottom: 1.25rem;
+	width: fit-content;
+}
+
+.toggle-btn {
+	font-family: "Inter", sans-serif;
+	background: transparent;
+	border: none;
+	border-radius: 6px;
+	color: rgba(255, 255, 255, 0.5);
+	cursor: pointer;
+	font-size: 0.8rem;
+	padding: 0.35rem 0.9rem;
+	transition: background 0.2s, color 0.2s;
+}
+
+.toggle-btn.active {
+	background: rgba(255, 255, 255, 0.12);
+	color: rgba(255, 255, 255, 0.9);
+}
+
+.hidden {
+	display: none;
+}
+
+/* Timeline */
+.timeline {
+	display: flex;
+	flex-direction: column;
+	padding-left: 0.5rem;
+}
+
+.timeline-item {
+	display: flex;
+	gap: 1rem;
+	position: relative;
+}
+
+.timeline-item:not(:last-child)::before {
+	content: "";
+	position: absolute;
+	left: 6px;
+	top: 20px;
+	bottom: -8px;
+	width: 1px;
+	background: rgba(255, 255, 255, 0.1);
+}
+
+.timeline-item + .timeline-item {
+	margin-top: 0.5rem;
+}
+
+.timeline-marker {
+	width: 11px;
+	height: 11px;
+	border-radius: 50%;
+	border: 1px solid rgba(255, 255, 255, 0.4);
+	background: rgba(255, 255, 255, 0.1);
+	flex-shrink: 0;
+	margin-top: 4px;
+}
+
+.timeline-content {
+	flex: 1;
+	background: rgba(255, 255, 255, 0.025);
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	border-radius: 10px;
+	padding: 0.85rem 1.1rem;
+	margin-bottom: 0.5rem;
+}
+
+.timeline-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	gap: 0.5rem;
+}
+
+.timeline-title {
+	font-size: 0.9rem;
+	font-weight: 600;
+	margin: 0;
+}
+
+.timeline-sub {
+	font-size: 0.8rem;
+	margin: 0.2rem 0 0 0;
+	opacity: 0.6;
+}
+
+.timeline-period {
+	font-size: 0.75rem;
+	opacity: 0.5;
+	white-space: nowrap;
+	padding-top: 0.1rem;
+}
+
+.timeline-desc {
+	padding: 0 0.5rem;
+}
+
+.timeline-desc p {
+	font-size: 0.8rem;
+	line-height: 1rem;
+	margin-top: 0.5rem;
+}

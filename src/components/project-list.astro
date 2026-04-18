@@ -1,15 +1,12 @@
 ---
 // Import.
 import { marked } from 'marked';
-
 // Load collection library. (To view md files)
 import { getCollection } from "astro:content";
 import Project from "./project.astro";
-
-const projects = await getCollection("projects");
-
+const projects = (await getCollection("projects"))
+	.sort((a, b) => b.data.projectDate - a.data.projectDate);
 ---
-
 {projects.map((project) => (
 	<Project 
 		frontmatter={project.data}
