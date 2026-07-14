@@ -29,4 +29,11 @@ const education = defineCollection({
 	}),
 });
 
-export const collections = { projects, work, education };
+const privacyPolicy = defineCollection({
+	type: 'content',
+	schema: z.object({
+		title: z.string().optional(),
+	}),
+});
+
+export const collections = { projects, work, education, privacyPolicy };

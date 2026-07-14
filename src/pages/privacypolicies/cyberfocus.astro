@@ -1,0 +1,23 @@
+---
+// Imports.
+import { marked } from 'marked';
+import { getCollection } from "astro:content";
+
+// Components.
+import Layout from '../../layouts/base.astro';
+
+const policies = await getCollection("privacy-policy");
+const entry = policies[0];
+
+if (!entry)
+{
+	throw new Error("CyberAlerts privacy policy entry not found");
+}
+
+const content = marked.parse(entry.body);
+---
+<Layout title="Privacy Policy - CyberAlerts" currentPage="">
+	<section>
+		<article set:html={content} />
+	</section>
+</Layout>
