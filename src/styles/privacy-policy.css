@@ -1,0 +1,19 @@
+.policy-content {
+	max-width: 700px;
+	margin: 0 auto;
+	padding: 2rem 1rem;
+}
+
+.policy-content h1 {
+	margin-bottom: 1rem;
+}
+
+.policy-content h2 {
+	margin-top: 2rem;
+	margin-bottom: 0.5rem;
+}
+
+.policy-content ul,
+.policy-content ol {
+	padding-left: 1.5rem;
+}

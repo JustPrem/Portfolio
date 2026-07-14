@@ -6,7 +6,7 @@
 
 CyberAlerts ("we", "us", "our") is a cybersecurity and scam awareness app for local communities. This policy explains what personal data we collect, why we collect it, and how we handle it in accordance with the UK General Data Protection Regulation (UK GDPR) and the Data Protection Act 2018.
 
-If you have any questions about this policy, you can contact us at cyberfocus@code-prem.dev.
+If you have any questions about this policy, you can contact us at cyberfocus@code-prem.dev
 
 ##### 2. Who We Are
 
